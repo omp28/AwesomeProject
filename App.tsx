@@ -62,7 +62,17 @@ export default function App() {
       characterList += specialChars;
     }
 
-    const passwordResult = createPassword(characterList, passwordLength);
+    const finalPasswordResult = () => {
+      // shufflle the password result
+      const shufflle = characterList.split('').sort(() => 0.5 - Math.random());
+      return shufflle.join('');
+    };
+    const passwordResultIntermediate = finalPasswordResult();
+    console.log('passwordResultIntermediate', passwordResultIntermediate);
+    const passwordResult = createPassword(
+      passwordResultIntermediate,
+      passwordLength,
+    );
 
     setPassword(passwordResult);
     setIsPassGenerated(true);
